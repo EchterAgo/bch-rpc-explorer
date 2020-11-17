@@ -301,7 +301,11 @@ function getRpcData(cmd) {
 		rpcCall = function(callback) {
 			var client = (cmd == "gettxoutsetinfo" ? global.rpcClientNoTimeout : global.rpcClient);
 
+			var rpcStartTime = Date.now();
+			utils.debugRpcPerfLog(`RPC ${cmd} started`);
 			client.command(cmd, function(err, result, resHeaders) {
+				utils.debugRpcPerfLog(`RPC ${cmd} finished in ${(Date.now() - rpcStartTime) / 1000.0}s`);
+
 				try {
 					if (err) {
 						logStats(cmd, false, new Date().getTime() - startTime, false);
@@ -354,7 +358,10 @@ function getRpcDataWithParams(request) {
 		debugLog(`RPC: ${JSON.stringify(request)}`);
 
 		rpcCall = function(callback) {
+			var rpcStartTime = Date.now();
+			utils.debugRpcPerfLog(`RPC ${request.method} ${request.parameters.join(" ")} started`);
 			global.rpcClient.command([request], function(err, result, resHeaders) {
+				utils.debugRpcPerfLog(`RPC ${request.method} ${request.parameters.join(" ")} finished in ${(Date.now() - rpcStartTime) / 1000.0}s`);
 				try {
 					if (err != null) {
 						logStats(request.method, true, new Date().getTime() - startTime, false);

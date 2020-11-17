@@ -4,6 +4,7 @@ var debugLog = debug("bchexp:utils");
 var debugErrorLog = debug("bchexp:error");
 var debugErrorVerboseLog = debug("bchexp:errorVerbose");
 var debugPerfLog = debug("bchexp:actionPerformace");
+var debugRpcPerfLog = debug("bchexp:rpcPerformance");
 
 var Decimal = require("decimal.js");
 var request = require("request");
@@ -861,5 +862,6 @@ module.exports = {
 	outputTypeAbbreviation: outputTypeAbbreviation,
 	outputTypeName: outputTypeName,
 	serviceBitsToName: serviceBitsToName,
-	perfMeasure: perfMeasure
+	perfMeasure: perfMeasure,
+	debugRpcPerfLog: debugRpcPerfLog
 };
