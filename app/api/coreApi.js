@@ -472,7 +472,7 @@ function getBlockCached(hash_or_height, full = false) {
 		return tryCacheThenRpcApi(blockCache, "getBlock-" + hash_or_height, ONE_YR, function() {
 			return new Promise(function(resolve, reject) {
 				getBlockInt(hash_or_height).then(function(block) {
-					block.tx.length = 1; // only keep the coinbase TX when caching the result
+					block.tx.length = 1; // only keep the coinbase TX
 					resolve(block);
 				}).catch(function(err) {
 					reject(err);
@@ -480,7 +480,9 @@ function getBlockCached(hash_or_height, full = false) {
 			});
 		});
 	} else {
-		return getBlockInt(hash_or_height);
+		return tryCacheThenRpcApi(blockCache, "getBlock-" + hash_or_height + "-full", ONE_DAY, function() {
+			return getBlockInt(hash_or_height);
+		});
 	}
 }
 
