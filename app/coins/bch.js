@@ -61,7 +61,7 @@ module.exports = {
 	nodeUrl:"https://bitcoinunlimited.info/download",
 	demoSiteUrl: "https://explorer.bitcoinunlimited.info",
 	specialLogo: {
-		"main2": {
+		"scale": {
 			url: "/img/logo/scalenet192.png",
 			width: 192,
 			height: 138,
@@ -558,6 +558,39 @@ module.exports = {
 			alertBodyHtml: "This transaction doesn't really exist! This is the coinbase transaction of the <a href='/block/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f'>Bitcoin Genesis Block</a>. For more background about this special-case transaction, you can read <a href='https://github.com/bitcoin/bitcoin/issues/3303'>this brief discussion</a> among some of the <a href='https://bitcoin.org'>Bitcoin</a> developers.",
 			referenceUrl: "https://github.com/bitcoin/bitcoin/issues/3303"
 		},
+
+		// scalenet
+		{
+			type: "blockheight",
+			date: "2020-10-03",
+			chain: "scale",
+			blockHeight: 9999,
+			blockHash: "000000007fb3362740efd1435aa414f54171993483799782f83c61bc7bf1b1be",
+			summary: "The last permanent block on scalenet",
+			alertBodyHtml: "This is the last permanent block on scalenet, Whenever scalenet gets too large the chain will be reset to this block.",
+			referenceUrl: "https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/merge_requests/750"
+		},
+		{
+			type: "blockheight",
+			date: "2020-11-14",
+			chain: "scale",
+			blockHeight: 16809,
+			blockHash: "00000000008492687e9f4960c2c5754fcad40064a068a69059fa162c7c7e1b03",
+			summary: "The block that killed scalenet",
+			alertBodyHtml: "This block was the first scalenet block to exceeded the 128MB maximum block file size. Both BCHN and BU nodes were unable to handle this, so it brought most scalenet nodes down.",
+			referenceUrl: "https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/merge_requests/855"
+		},
+		{
+			type: "blockheight",
+			date: "2020-11-14",
+			chain: "scale",
+			blockHeight: 16810,
+			blockHash: "00000000017caad8a8cc6dee443a615413336f1aea762e7d0e2ab9d66bd0e138",
+			summary: "The first full block on scalenet",
+			alertBodyHtml: "This was the first fully filled scalenet block. To produce it several pieces of software needed to be optimized.",
+			referenceUrl: "https://sbch.loping.net/"
+		},
+
 
 		// regtest
 		{
