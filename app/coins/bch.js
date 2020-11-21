@@ -60,6 +60,14 @@ module.exports = {
 	nodeTitle:"Bitcoin Cash Full Node",
 	nodeUrl:"https://bitcoinunlimited.info/download",
 	demoSiteUrl: "https://explorer.bitcoinunlimited.info",
+	specialLogo: {
+		"main2": {
+			url: "/img/logo/scalenet192.png",
+			width: 192,
+			height: 138,
+			alt: "ScalNnet"
+		}
+	},
 	miningPoolsConfigUrls:[
 		"https://raw.githubusercontent.com/btccom/Blockchain-Known-Pools/master/pools.json",
 		"https://raw.githubusercontent.com/blockchain/Blockchain-Known-Pools/master/pools.json"

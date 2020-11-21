@@ -40,15 +40,18 @@ html(lang="en")
 							if (slogo.span)
 								span !{slogo.span}
 						else
-							img.header-image(src=coinConfig.logoUrl, alt="logo")
-
-						if (coinConfig.siteTitlesByNetwork && coinConfig.siteTitlesByNetwork[activeBlockchain])
-							span #{coinConfig.siteTitlesByNetwork[activeBlockchain]}
-						else
-							if (coinConfig.siteTitleHtml)
-								span !{coinConfig.siteTitleHtml}
+							if (coinConfig.logoUrlsByNetwork && coinConfig.logoUrlsByNetwork[activeBlockchain])
+								img.header-image(src=coinConfig.logoUrlsByNetwork[activeBlockchain], alt="logo")
 							else
-								span #{coinConfig.siteTitle}
+								img.header-image(src=coinConfig.logoUrl, alt="logo")
+
+							if (coinConfig.siteTitlesByNetwork && coinConfig.siteTitlesByNetwork[activeBlockchain])
+								span #{coinConfig.siteTitlesByNetwork[activeBlockchain]}
+							else
+								if (coinConfig.siteTitleHtml)
+									span !{coinConfig.siteTitleHtml}
+								else
+									span #{coinConfig.siteTitle}
 						
 				button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarNav", aria-label="collapse navigation")
 					span.navbar-toggler-icon
@@ -57,7 +60,7 @@ html(lang="en")
 					if (rpcClient)
 						ul.navbar-nav.mr-auto
 
-							if (activeBlockchain != "main")
+							if (activeBlockchain != "main" && activeBlockchain != "scale")
 								li.nav-item
 									a.nav-link.text-warning(title=`Current node's chain: ${activeBlockchain}` data-toggle="tooltip") [#{activeBlockchain}net]
 
