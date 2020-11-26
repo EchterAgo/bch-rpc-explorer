@@ -1,5 +1,9 @@
 {
     "coinbase_tags" : {
+        "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks": {
+            "name": "Satoshi",
+            "link": "https://nakamotoinstitute.org/"
+        },
         "Calin": {
             "name": "Calin",
             "link": "https://bitcoincashnode.org/members/calin-calianu"
@@ -73,6 +77,10 @@
         "bchtest:qzt0hqx73cwpevp2k4w87hgwyx4zhhnyass86z5j7p": {
             "name": "Loping.net",
             "link": "http://sbch.loping.net/"
+        },
+        "bchtest:qru8l9csar2dmmfhjsdzq5wzqdzf3fmqx5p7m23dmq": {
+            "name": "Loping.net",
+            "link": "http://tbch.loping.net/"
         },
         "bchtest:qz97l9e4mxl248hcwsqvmtuwm9slu58rm585nes0ra": {
             "name": "AndrewBU",
