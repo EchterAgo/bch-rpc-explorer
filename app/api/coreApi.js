@@ -792,36 +792,15 @@ function summarizeBlockAnalysisData(blockHeight, tx, inputs) {
 function getRawTransactionsWithInputs(txids, maxInputs=-1) {
 	return new Promise(function(resolve, reject) {
 		getRawTransactions(txids).then(function(transactions) {
-			var maxInputsTracked = config.site.txMaxInput;
-			
-			if (maxInputs <= 0) {
+			var maxInputsTracked = maxInputs;
+			if (maxInputsTracked <= 0)
 				maxInputsTracked = 1000000;
 
-			} else if (maxInputs > 0) {
-				maxInputsTracked = maxInputs;
-			}
+			var vinIds = transactions.flatMap(tx => tx.vin).filter((input, idx) => input.txid && idx < maxInputsTracked).map(input => {
+				return { txid: input.txid, voutIndex: input.vout };
+			});
 
-			var vinIds = [];
-			for (var i = 0; i < transactions.length; i++) {
-				var transaction = transactions[i];
-
-				if (transaction && transaction.vin) {
-					for (var j = 0; j < Math.min(maxInputsTracked, transaction.vin.length); j++) {
-						if (transaction.vin[j].txid) {
-							vinIds.push({txid:transaction.vin[j].txid, voutIndex:transaction.vin[j].vout});
-						}
-					}
-				}
-			}
-
-			var promises = [];
-
-			for (var i = 0; i < vinIds.length; i++) {
-				var vinId = vinIds[i];
-
-				promises.push(getSummarizedTransactionOutput(vinId.txid, vinId.voutIndex));
-			}
-
+			var promises = vinIds.map(i => getSummarizedTransactionOutput(i.txid, i.voutIndex));
 			Promise.all(promises).then(function(promiseResults) {
 				var summarizedTxOutputs = {};
 				for (var i = 0; i < promiseResults.length; i++) {
@@ -832,7 +811,8 @@ function getRawTransactionsWithInputs(txids, maxInputs=-1) {
 
 				var txInputsByTransaction = {};
 
-				transactions.forEach(function(tx) {
+				transactions.forEach(function(tx, txindex) {
+					tx.coindaysdestroyed = 0;
 					txInputsByTransaction[tx.txid] = {};
 
 					if (tx && tx.vin) {
@@ -840,6 +820,7 @@ function getRawTransactionsWithInputs(txids, maxInputs=-1) {
 							var summarizedTxOutput = summarizedTxOutputs[`${tx.vin[i].txid}:${tx.vin[i].vout}`];
 							if (summarizedTxOutput) {
 								txInputsByTransaction[tx.txid][i] = summarizedTxOutput;
+								tx.coindaysdestroyed += ((tx.time - summarizedTxOutput.utxoTime) / 86400.0) * summarizedTxOutput.value;
 							}
 						}
 					}
