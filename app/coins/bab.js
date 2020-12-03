@@ -50,13 +50,17 @@ var currencyUnits = [
 ];
 
 module.exports = {
-	name:"Bitcoin ABC",
-	nameHtml:"Bitcoin <s>Cash</s> ABC",
+	alert: {
+		title: "Comrade, stay informed to maintain consensus!",
+		text: "To use the correct chain, stay tuned for invalidateblock instructions issued by the <a href=\"https://www.bitcoinabc.org/\">Politburo of Bitcoin ABC</a>"
+	},
+	name:"Politburo's New Bitcoin ABC",
+	nameHtml:"Politburo's New Bitcoin ABC",
 	ticker:"BAB",
 	logoUrl:"/img/logo/abc.svg",
 	faviconUrl:"/img/logo/abc.ico",
-	siteTitle:"Bitcoin ABC Taxplorer",
-	siteTitleHtml:"Bitcoin <s>Cash</s> ABC Taxplorer",
+	siteTitle:"Politburo's New Bitcoin ABC Taxplorer",
+	siteTitleHtml:"Politburo's New Bitcoin ABC Taxplorer",
 	siteDescriptionHtml:"",
 	nodeTitle:"Bitcoin ABC Node",
 	nodeUrl:"https://www.bitcoinabc.org/",

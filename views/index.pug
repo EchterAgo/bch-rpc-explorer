@@ -53,6 +53,13 @@ block content
 				span.font-weight-bold Progress: 
 				span.text-monospace #{new Decimal(blockChainInfo.verificationprogress).times(100).toDP(3)}%
 
+		if (coinConfig.alert)
+			div.alert.alert-warning.shadow-sm.border.mb-3
+				div.font-weight-bold.mb-1 !{coinConfig.alert.title}
+
+				div.mb-1 !{coinConfig.alert.text}
+
+
 
 		div.row
 			- var summaryColCount = 8;
