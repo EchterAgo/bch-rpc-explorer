@@ -42,7 +42,7 @@ div.row.index-summary
 				tr
 					th.px-2.px-lg-0.px-xl-2
 						i.fas.fa-dumbbell.mr-1.summary-icon
-						span.border-dotted(title="The target difficulty that the last block, current chaintip, needed to reach to win the mining lottery", data-toggle="tooltip") Last difficulty
+						span.border-dotted(title="The target difficulty that the last block, current chaintip, needed to reach to win the mining lottery", data-toggle="tooltip") Difficulty
 					td.text-right.text-monospace
 						- var difficultyData = utils.formatLargeNumber(blockChainInfo.difficulty, 2);
 						span.border-dotted(data-toggle="tooltip", title=parseFloat(blockChainInfo.difficulty).toLocaleString())
@@ -50,28 +50,6 @@ div.row.index-summary
 							small.px-2.px-lg-0.px-xl-2 x
 							span 10
 							sup #{difficultyData[1].exponent}
-
-				if (realDifficulty)
-					tr
-						th.px-2.px-lg-0.px-xl-2
-							i.fas.fa-dumbbell.mr-1.summary-icon
-							span.border-dotted(title="The target difficutly needed to mine the next block", data-toggle="tooltip") Difficulty
-						td.text-right.text-monospace
-							- var difficultyData = utils.formatLargeNumber(realDifficulty, 2);
-							span.border-dotted(data-toggle="tooltip", title=parseFloat(realDifficulty).toLocaleString())
-								span #{difficultyData[0]}
-								small.px-2.px-lg-0.px-xl-2 x
-								span 10
-								sup #{difficultyData[1].exponent}
-
-					tr
-						th.px-2.px-lg-0.px-xl-2
-							i.fas.fa-dumbbell.mr-1.summary-icon
-							span Difficulty change
-						td.text-right.text-monospace
-							- var difficultyChange = (realDifficulty / blockChainInfo.difficulty) - 1;
-							span
-								span #{new Decimal(difficultyChange * 100).toDecimalPlaces(2)} %
 
 				tr
 					th.px-2.px-lg-0.px-xl-2

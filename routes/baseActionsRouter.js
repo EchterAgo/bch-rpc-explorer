@@ -71,13 +71,7 @@ router.get("/", function(req, res, next) {
 		res.locals.difficultyPeriod = parseInt(Math.floor(data.blockChainInfo.blocks / coinConfig.difficultyAdjustmentBlockCount));
 
 		// promiseResults[5]
-		promises.push(new Promise(function(resolve, reject) {
-			coreApi.getBlockTemplate().then(function(bt) {
-				resolve(bt);
-			}).catch(function(err) {
-				resolve(null); // ignore being unable to get block template
-			});
-		}));
+		promises.push(0);
 
 		// promiseResults[6]
 		promises.push(new Promise(function(resolve, reject) {
@@ -118,11 +112,6 @@ router.get("/", function(req, res, next) {
 			res.locals.hashrate1h = promiseResults[2];
 			res.locals.hashrate1d = promiseResults[3];
 			res.locals.hashrate7d = promiseResults[4];
-
-			if (promiseResults[5]) {
-				res.locals.blockTemplate = promiseResults[5];
-				res.locals.realDifficulty = bch.GetDifficulty(parseInt(promiseResults[5].bits, 16));
-			}
 
 			res.locals.difficultyPeriodFirstBlockHeader = promiseResults[6];
 
